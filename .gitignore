@@ -2,3 +2,4 @@ ansible-vault/group_vars
 ansible-vault/pass_file
 */terraform/.terraform*
 */terraform/*.tfstate*
+.ansible
