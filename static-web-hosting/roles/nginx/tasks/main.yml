@@ -1,0 +1,83 @@
+---
+# - name: "update apt cache"
+#   become: yes
+#   apt:
+#     update_cache: yes
+
+# - name: "install nginx"
+#   become: yes
+#   apt:
+#     name:
+#       - nginx
+#     state: latest
+
+# - name: "start nginx service"
+#   become: yes
+#   service:
+#     name: nginx
+#     state: started
+
+# - name: "add static html file"
+#   become: yes
+#   copy:
+#     src: /home/uday/week-1-code/StringScrambledGame/index.html
+#     dest: /var/www/html/
+
+# - name: "update html file"
+#   become: yes
+  # template: src=/home/uday/week-1-code/eSparkHTML/index.html dest=/var/www/html/
+#   notify:
+#     - reload nginx
+
+# - name: "debug variable"
+#   debug: 
+#     msg: "variable is true"
+#   when: bool_var
+
+# - name: "debug variable"
+#   command: echo "{{ fruits_price }}"
+#   register: register_string_var
+
+# - name: "debug register variable"
+#   debug:
+#     var: register_string_var.stdout
+
+# - name: "print env"
+#   environment:
+#     local_env: "local env"
+#   command: "echo $local_env"
+
+# - name: "print global env"
+#   ansible.builtin.command: "echo $env1"
+
+# - name: "print global and local env"
+#   ansible.builtin.command: "echo $env1 $local_env"
+
+# - name: "print ansible_facts"
+#   debug:
+#     var: ansible_facts
+
+# - name: "practice when"
+#   debug:
+#     var: ansible_facts["kernel_version"]
+#   # when:
+#   #   - ansible_facts['os_family'] == "Debian"
+#   #   - ansible_facts["distribution_major_version"] == "24"
+#   when: ansible_facts['os_family'] == "Debian" and ansible_facts["distribution_major_version"] == "24"
+
+- import_tasks: message.yml
+- name: "practice ansible loop"
+  ansible.builtin.command:
+    echo "{{ item }}"
+  loop: [0,2,4,6,8,10]
+  when: item < 5
+
+- name: "practice template"
+  become: yes
+  template:
+    src: ../../../templates/nginx-conf.j2
+    dest: /etc/nginx/sites-enabled/default
+  vars:
+    port: 8081
+  notify:
+    - reload nginx

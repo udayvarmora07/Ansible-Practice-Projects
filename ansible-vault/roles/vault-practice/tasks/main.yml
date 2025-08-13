@@ -1,0 +1,5 @@
+---
+
+- name: "print ansible vault file"
+  debug:
+    var: my_secret

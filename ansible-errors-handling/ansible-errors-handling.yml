@@ -1,0 +1,7 @@
+---
+
+- name: "ansible error handling"
+  hosts: ec2-servers
+  remote_user: ubuntu
+  roles:
+    - error-handling

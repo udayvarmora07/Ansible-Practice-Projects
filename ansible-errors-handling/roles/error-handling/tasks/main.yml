@@ -1,0 +1,33 @@
+---
+
+- name: "practice ignore_errors"
+  become: yes
+  copy:
+    src: index.html
+    dest: /home/ubuntu
+  register: copy_result
+  ignore_errors: True
+
+- name: "print copy_result"
+  debug:
+    var: copy_result
+
+- name: "practice any_errors_fatal" 
+  become: yes
+  copy:
+    src: index.html
+    dest: /home/ubuntu
+  failed_when:
+    - '"Could not find or access" not in copy_result.msg'
+    - copy_result.failed == true
+  any_errors_fatal: True
+
+- name: "practice changed_when"
+  become: yes
+  command: touch /home/ubuntu/index.html
+  register: file_created
+  changed_when: file_created.rc == 0
+
+- name: "print file_created"
+  debug:
+    var: file_created

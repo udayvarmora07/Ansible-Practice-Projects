@@ -1,0 +1,8 @@
+---
+
+- name: "create directory, copy files from local to remote directory and host static project on nginx"
+  hosts: all
+  remote_user: ubuntu
+  vars_files: /roles/nginx/vars/main.yml
+  roles:
+    - nginx

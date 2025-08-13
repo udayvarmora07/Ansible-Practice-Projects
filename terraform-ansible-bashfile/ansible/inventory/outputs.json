@@ -1,0 +1,16 @@
+{
+  "instance_ips": {
+    "sensitive": false,
+    "type": [
+      "tuple",
+      [
+        "string",
+        "string"
+      ]
+    ],
+    "value": [
+      "65.2.131.253",
+      "13.127.233.214"
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+---
+
+- name: "ansible vault practice"
+  hosts: web
+  remote_user: ubuntu
+  roles:
+    - vault-practice

@@ -1,0 +1,25 @@
+---
+
+- name: "update cache"
+  become: yes
+  apt:
+    update_cache: yes
+
+- name: "install nginx"
+  become: yes
+  apt:
+    name: nginx
+    state: latest
+
+- name: "start nginx"
+  become: yes
+  service:
+    name: nginx
+    state: started
+    enabled: true
+
+- name: "add static project to nginx"
+  become: yes
+  copy:
+    src: /home/uday/week-1-code/eSparkHTML/
+    dest: /var/www/html/

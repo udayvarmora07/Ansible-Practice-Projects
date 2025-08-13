@@ -1,0 +1,7 @@
+---
+
+- name: blue green deployment practice
+  hosts: app
+  remote_user: ubuntu
+  roles:
+    - apache2
